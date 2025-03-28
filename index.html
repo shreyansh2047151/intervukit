@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" defer></script>
+  <title>Career Companion Dashboard</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Career Companion</h2>
+      <ul>
+        <li onclick="showPage('overview')" class="active"><span>📊</span> Overview</li>
+        <li onclick="showPage('resumatch')"><span>📄</span> ResuMatch</li>
+        <li onclick="showPage('interviewkit')"><span>🚀</span> Interview Kit</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Overview Section -->
+      <section id="overview" class="content active animate-fade-in">
+        <h1>Platform Overview</h1><br>
+        <div class="card blue animate-slide-up">
+          <h2>ResuMatch</h2><br>
+          <p>ResuMatch is a web-based application designed to analyze resumes against a given job description using AI. It categorizes resumes into Best, Better, and Good fits based on their relevance. The analysis is powered by the Gemini AI API.</p>
+        </div>
+        <div class="card green animate-slide-up">
+          <h2>Interview Kit Generator</h2> <br>
+          <p>The Interview Kit Generator is a web-based tool that helps users generate a customized interview kit using AI. By analyzing the resume and job description, the platform creates tailored interview questions, quick Q&A, company insights, and a candidate analysis report in PDF format.</p>
+        </div>
+      </section>
+
+      <!-- ResuMatch Section -->
+      <section id="resumatch" class="content animate-fade-in">
+        <iframe src="ResuMatch.html" frameborder="0"></iframe>
+      </section>
+
+      <!-- Interview Kit Section -->
+      <section id="interviewkit" class="content animate-fade-in">
+        <iframe src="interviewkit.html" frameborder="0"></iframe>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

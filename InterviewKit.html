@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Kit Generator</title>
+    <link rel="stylesheet" href="css/InterviewKit.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📄 Interview Kit Generator 🚀</h1>
+        
+        <div class="input-section">
+            <div class="form-card">
+                <h2>Your Information</h2>
+                <label for="resume">Upload Resume (PDF):</label>
+                <input type="file" id="resume" accept=".pdf" required>
+                
+                <label for="jobDescText">Paste Job Description:</label>
+                <textarea id="jobDescText" placeholder="Or paste text here..."></textarea>
+                
+                <label for="jobDescFile">Or Upload JD (PDF):</label>
+                <input type="file" id="jobDescFile" accept=".pdf">
+                
+                <label for="companyWebsite">Company Website:</label>
+                <input type="url" id="companyWebsite" placeholder="https://company.com" required>
+                
+                <label for="linkedin">LinkedIn Profile (optional):</label>
+                <input type="url" id="linkedin" placeholder="https://linkedin.com/company">
+                
+                <label for="interviewDuration">Interview Duration:</label>
+                <select id="interviewDuration">
+                    <option value="15">15 Minutes</option>
+                    <option value="30" selected>30 Minutes</option>
+                    <option value="60">60 Minutes</option>
+                </select>
+                
+                <button onclick="generateKit()">✨ Generate Interview Kit</button>
+                <p> *This is an AI based Model that can make mistakes please check the output </p>
+            </div>
+        </div>
+
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <p>Generating your interview kit...</p>
+        </div>
+    </div>
+
+    <!-- Add PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="js/InterviewKit.js"></script>
+</body>
+</html>

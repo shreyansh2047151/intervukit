@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuMatch - AI Resume Screening</title>
+    <link rel="stylesheet" href="css/ResuMatch.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-file-search"></i>
+                    <h1>ResuMatch</h1>
+                </div>
+                <div class="tagline">AI-Powered Resume Screening</div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="card upload-card">
+                    <h2><i class="fas fa-upload"></i> Upload Files</h2>
+                    
+                    <div class="upload-area">
+                        <div class="upload-box" id="resume-upload-box">
+                            <i class="fas fa-file-pdf"></i>
+                            <h3>Upload Resumes</h3>
+                            <p>Drag & drop multiple PDF files or click to browse</p>
+                            <input type="file" id="resume-upload" multiple accept=".pdf" style="display: none;">
+                            <button class="upload-btn" id="resume-upload-btn">Select Files</button>
+                            <div class="file-count" id="resume-count">0 files selected</div>
+                        </div>
+                        
+                        <div class="upload-box" id="jd-upload-box">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Upload Job Description</h3>
+                            <p>Drag & drop a PDF file or enter text below</p>
+                            <input type="file" id="jd-upload" accept=".pdf" style="display: none;">
+                            <button class="upload-btn" id="jd-upload-btn">Select File</button>
+                            <div class="file-count" id="jd-count">No file selected</div>
+                            <textarea id="jd-text" placeholder="Or paste your job description here..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="action-area">
+                        <button id="analyze-btn" class="primary-btn" disabled>
+                            <i class="fas fa-robot"></i> Analyze with AI
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="loader-section" id="loader-section" style="display: none;">
+                <div class="card loader-card">
+                    <h2><i class="fas fa-cogs"></i> Processing</h2>
+                    <p>Analyzing resumes against job description...</p>
+                    
+                    <div class="loader-container">
+                        <div class="loader-slider">
+                            <div class="loader-progress" id="loader-progress"></div>
+                        </div>
+                        <div class="loader-text" id="loader-text">Initializing...</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="results-section" id="results-section" style="display: none;">
+                <div class="card results-card">
+                    <h2><i class="fas fa-chart-bar"></i> Analysis Results</h2>
+                    <p class="results-summary" id="results-summary">Found 0 matches from 0 resumes.</p>
+                    
+                    <div class="results-container">
+                        <div class="category-tab-container">
+                            <div class="category-tab active" data-category="best">Best Fit</div>
+                            <div class="category-tab" data-category="better">Better Fit</div>
+                            <div class="category-tab" data-category="good">Good Fit</div>
+                        </div>
+                        
+                        <div class="category-content active" id="best-fit">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <p>No resumes in this category yet.</p>
+                            </div>
+                            <div class="resume-list" id="best-list"></div>
+                        </div>
+                        
+                        <div class="category-content" id="better-fit">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <p>No resumes in this category yet.</p>
+                            </div>
+                            <div class="resume-list" id="better-list"></div>
+                        </div>
+                        
+                        <div class="category-content" id="good-fit">
+                            <div class="empty-state">
+                                <i class="fas fa-search"></i>
+                                <p>No resumes in this category yet.</p>
+                            </div>
+                            <div class="resume-list" id="good-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2025 ResuMatch | AI-Powered Resume Screening</p>
+            <p>Powered by Gemini AI</p>
+        </footer>
+    </div>
+    
+    <div id="overlay" class="overlay">
+        <div class="resume-preview-card">
+            <div class="preview-header">
+                <h3 id="preview-title">Resume Preview</h3>
+                <button id="close-preview" class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="preview-content">
+                <div class="preview-stats">
+                    <div class="match-score">
+                        <span id="preview-score">0%</span>
+                        <span>Match</span>
+                    </div>
+                    <div class="match-category" id="preview-category">Category</div>
+                </div>
+                <div class="preview-details">
+                    <h4>Key Strengths</h4>
+                    <ul id="preview-strengths"></ul>
+                    <h4>Missing Skills</h4>
+                    <ul id="preview-missing"></ul>
+                    <div class="resume-text" id="preview-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/ResuMatch.js"></script>
+</body>
+</html>
